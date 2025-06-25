@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Task Track - Login</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="login-container">
+        <form class="login-form" onsubmit="handleLogin(event)">
+            <h2>Log In to Task Track</h2>
+            <div class="input-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="you@example.com" required />
+            </div>
+            <div class="input-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Password" required />
+            </div>
+            <button type="submit" class="login-btn">Log In</button>
+            <div class="login-footer signup-link">
+                Don’t have an account? <a href="signup.html">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { handleLogin } from './js/auth.js'; window.handleLogin = handleLogin;
+    </script>
+
+    <script type="module" src="js/auth-guard.js"></script>
+</body>
+
+</html>

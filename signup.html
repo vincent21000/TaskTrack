@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Track – Sign Up</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="login-container">
+        <form class="login-form" onsubmit="handleSignup(event)">
+            <h2>Create Your Account</h2>
+
+            <div class="input-group">
+                <label for="signup-username">First Name</label>
+                <input type="text" id="signup-username" placeholder="First Name" required />
+            </div>
+
+            <div class="input-group">
+                <label for="signup-lastname">Last Name</label>
+                <input type="text" id="signup-lastname" placeholder="Last Name" required />
+            </div>
+
+            <div class="input-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="input-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Enter password" required />
+            </div>
+
+            <div class="input-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" id="signup-confirm-password" placeholder="Confirm password" required />
+            </div>
+
+            <button type="submit" class="login-btn">Sign Up</button>
+
+            <div class="login-footer">
+                Already have an account? <a href="index.html">Log in</a>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { handleSignup } from './js/auth.js'; window.handleSignup = handleSignup;
+    </script>
+
+    <script type="module" src="js/auth-guard.js"></script>
+</body>
+
+</html>
