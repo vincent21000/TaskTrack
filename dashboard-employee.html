@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Track - Employee Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>TaskTrack</h2>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" onclick="showSection('employeeTasks')">My Tasks</a></li>
+                <li><a href="#" onclick="showSection('employeeCompletedTasks')">Completed</a></li>
+            </ul>
+        </nav>
+        <button class="logout-btn" onclick="logout()">Log Out</button>
+    </aside>
+
+    <main class="main-content">
+        <!-- My Tasks -->
+        <section id="employeeTasks" class="section active">
+            <h2>My Tasks</h2>
+            <div class="table-responsive">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-tasks-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+        <!-- Completed -->
+        <section id="employeeCompletedTasks" class="section">
+            <h2>Completed Tasks</h2>
+            <div class="table-responsive">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Done Date</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-completed-tasks-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+            if (id === 'employeeTasks') document.querySelectorAll('.sidebar nav a')[0].classList.add('active');
+            if (id === 'employeeCompletedTasks') document.querySelectorAll('.sidebar nav a')[1].classList.add('active');
+        }
+    </script>
+    <script type="module" src="js/dashboard-employee.js"></script>
+    <script type="module" src="js/auth-guard.js"></script>
+</body>
+</html>

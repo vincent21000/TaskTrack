@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Track Dashboard (Admin)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>TaskTrack</h2>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" onclick="showSection('createTask')">Create Task</a></li>
+                <li><a href="#" onclick="showSection('manageUser')">Manage User</a></li>
+                <li><a href="#" onclick="showSection('allTasks')">All Tasks</a></li>
+                <li><a href="#" onclick="showSection('completedTasks')">Completed Tasks</a></li>
+            </ul>
+        </nav>
+        <button class="logout-btn" onclick="logout()">Log Out</button>
+    </aside>
+
+    <main class="main-content">
+        <!-- Create Task Section -->
+        <section id="createTask" class="section active">
+            <h2>Create Task</h2>
+            <form class="form" id="create-task-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="task-title">Task Title</label>
+                    <input type="text" id="task-title" placeholder="Enter task title" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-desc">Description</label>
+                    <textarea id="task-desc" rows="3" placeholder="Enter task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-assign">Assign To</label>
+                    <select id="task-assign">
+                        <option value="">Choose employee</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-due">Due Date</label>
+                    <input type="date" id="task-due" required>
+                </div>
+                <button type="submit" class="primary-btn">Create Task</button>
+            </form>
+        </section>
+
+        <!-- Manage User Section -->
+        <section id="manageUser" class="section">
+            <h2>Manage Users</h2>
+            <div id="employee-list" class="employee-list">
+                <!-- Employees will be listed here dynamically -->
+            </div>
+        </section>
+
+        <!-- All Tasks Section -->
+        <section id="allTasks" class="section">
+            <h2>All Tasks</h2>
+            <div class="table-responsive">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Assigned To</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasks-table-body">
+                        <!-- Tasks will be dynamically rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Completed Tasks Section -->
+        <section id="completedTasks" class="section">
+            <h2>Completed Tasks</h2>
+            <div class="table-responsive">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Assigned To</th>
+                            <th>Done Date & Time</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="completed-tasks-table-body">
+                        <!-- Completed tasks will be dynamically rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+            if (id === 'createTask') document.querySelectorAll('.sidebar nav a')[0].classList.add('active');
+            if (id === 'manageUser') document.querySelectorAll('.sidebar nav a')[1].classList.add('active');
+            if (id === 'allTasks') document.querySelectorAll('.sidebar nav a')[2].classList.add('active');
+            if (id === 'completedTasks') document.querySelectorAll('.sidebar nav a')[3].classList.add('active');
+            // Only clear forms in the current section
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.id === id) {
+                    section.querySelectorAll('form').forEach(form => {
+                        form.reset();
+                    });
+                }
+            });
+        }
+    </script>
+    <script type="module" src="js/dashboard-admin.js"></script>
+    <script type="module" src="js/auth-guard.js"></script>
+</body>
+</html>
